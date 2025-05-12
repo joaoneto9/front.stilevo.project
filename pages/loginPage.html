@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <h1 class="title">STILEVO STORE</h1>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Senha:</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" required />
+                    <button type="button" id="togglePassword">👁️</button>
+                </div>
+            </div>
+
+            <button id="submitUser" type="submit">Entrar</button>
+        </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="loginPageScript.js"></script>
+</body>
+</html>
