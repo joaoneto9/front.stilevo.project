@@ -17,8 +17,22 @@ form.addEventListener("submit", async (event) => {
     const email = document.getElementById("email").value;
     const password = passwordInput.value
 
-    const token = await login(email, password);
+    try {
+        const token = await login(email, password);
+        console.log(token);
 
-    console.log(token);
+        setTimeout(() => {
+            window.location.href = "../loja_page/lojaPage.html";
+        }, 1000) // 2 segundos de espera
+        
+    } catch(error) {
+        console.log("error", error);
+        // Alerta de erro
+        Swal.fire({
+            icon: 'error',            
+            title: 'email ou senha invalida',
+            text: 'Verifique os dados e tente novamente.'
+        });
+    }
 })
 
