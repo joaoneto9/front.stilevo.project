@@ -36,7 +36,7 @@ registerForm.addEventListener("submit", async (event) => {
         });
 
         setTimeout(() => {
-        window.location.href = "../login_page/loginPage.html";
+            window.location.href = "../login_page/loginPage.html";
         }, 2000) // 2 segundos de espera
 
     } catch (error) {
