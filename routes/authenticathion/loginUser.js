@@ -8,5 +8,6 @@ export function login(email, password) {
     })
     .catch(error => {
         console.error('error', error);
+        throw error;
     });
 }
