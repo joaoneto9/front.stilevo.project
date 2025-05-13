@@ -1,4 +1,4 @@
-import { login } from "../routes/authenticathion/loginUser.js";
+import { login } from "../../routes/authenticathion/loginUser.js";
 
 const toggleBtn = document.getElementById("togglePassword");
 const passwordInput = document.getElementById("password");
@@ -11,15 +11,14 @@ toggleBtn.addEventListener("click", () => {
 
 const form = document.getElementById("loginForm");
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
     event.preventDefault(); // Impede envio padrão
 
     const email = document.getElementById("email").value;
     const password = passwordInput.value
 
-    login(email, password)
-        .then(token => {
-        console.log("token: " + token);
-        })
+    const token = await login(email, password);
+
+    console.log(token);
 })
 
