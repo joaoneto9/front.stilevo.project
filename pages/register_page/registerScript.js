@@ -20,9 +20,9 @@ registerForm.addEventListener("submit", async (event) => {
         const user = await registerUser(username, email, password, "USER")
 
         const newUser = {
-        id: user.id,
-        username: user.username,
-        email: user.email,
+            id: user.id,
+            username: user.username,
+            email: user.email,
         };
 
         console.log("USUARIO CADASTRADO COM SUCESSO: ", newUser); // usuario registardo; 
