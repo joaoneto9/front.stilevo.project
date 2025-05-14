@@ -1,4 +1,5 @@
 import { login } from "../../routes/authenticathion/loginUser.js";
+import { setToken, setUser } from "../user_config/user.js";
 
 const toggleBtn = document.getElementById("togglePassword");
 const passwordInput = document.getElementById("password");
@@ -18,12 +19,13 @@ form.addEventListener("submit", async (event) => {
     const password = passwordInput.value
 
     try {
-        const token = await login(email, password);
-        console.log(token);
+        const data = await login(email, password);
+        setToken(data.token);
+        setUser(data.user);
 
         setTimeout(() => {
             window.location.href = "../loja_page/lojaPage.html";
-        }, 1000) // 2 segundos de espera
+        }, 1000) // 1 segundo de espera
         
     } catch(error) {
         console.log("error", error);

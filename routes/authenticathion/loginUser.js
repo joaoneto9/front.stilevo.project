@@ -4,7 +4,7 @@ export function login(email, password) {
         password
     })
     .then(response => {
-        return response.data.token;
+        return response.data;
     })
     .catch(error => {
         console.error('error', error);
