@@ -3,11 +3,11 @@ export function setUser(user) {
 } 
 
 export function updateUser(user) {
-    localStorage.setItem("user", JSON.stringify(user));
+    sessionStorage.setItem("user", JSON.stringify(user));
 }
 
 function getUser() {
-    return JSON.parse(localStorage.getItem("user"));
+    return JSON.parse(sessionStorage.getItem("user"));
 }
 
 export function getUserId() {
@@ -27,9 +27,9 @@ export function getUserEndereco() {
 }
 
 export function setToken(token) {
-    localStorage.setItem("token", token);
+    sessionStorage.setItem("token", token);
 }
 
 export function getToken() {
-    return localStorage.getItem("token");
+    return sessionStorage.getItem("token");
 }
