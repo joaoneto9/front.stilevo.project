@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     document.getElementById("adicionarCarrinho").addEventListener('click', async () => {
         if (tamanho == "") {
+
             Swal.fire({
                 icon: 'error',            
                 title: 'escolha o tamanho do produto.',
@@ -34,21 +35,21 @@ window.addEventListener('DOMContentLoaded', async () => {
                 timer: 1000,
                 showConfirmButton: false
             });
-            return;
+
+        } else {
+
+            const newProduct = await insertProductAtCart(id, tamanho);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Produto ' + newProduct.productVariation.product.name + ' - ' + newProduct.productVariation.color + ' adicionado ao carrinho',
+                text: 'Acesse o carrinho e veja o Produto.',
+            });
+
+            setTimeout(() => {
+                window.location.href = "../carrinho_page/carrinhoPage.html";
+            }, 1000) // 1 segundo de espera
         }
-
-        const newProduct = await insertProductAtCart(id, tamanho);
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Produto ' + newProduct.productVariation.product.name + ' - ' + newProduct.productVariation.color + ' adicionado ao carrinho',
-            text: 'Acesse o carrinho e veja o Produto.',
-        });
-
-        setTimeout(() => {
-            window.location.href = "../carrinho_page/carrinhoPage.html";
-        }, 1000) // 2 segundos de espera
-
     });
 
     document.querySelector(".btn-tamanho").addEventListener('click', () => {
