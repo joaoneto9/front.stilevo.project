@@ -1,7 +1,10 @@
 import { getProducts } from "../../routes/get_products_variation/getProductsVariation.js";
 
-async function showProducts() {
-    const products = await getProducts();
+window.addEventListener('DOMContentLoaded', async () => {
+    showProducts(await getProducts());
+});
+
+function showProducts(products) {
 
     const produtos = document.querySelector(".produtos");
 
@@ -38,7 +41,3 @@ async function showProducts() {
         produtos.appendChild(div);
     });
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-    showProducts();
-});
