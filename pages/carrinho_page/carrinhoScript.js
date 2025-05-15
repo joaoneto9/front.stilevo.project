@@ -37,7 +37,7 @@ function showProducts(cartItens) {
         img.setAttribute('src', cartItem.productVariation.imageUrl);
 
         const h3 = document.createElement("h3");
-        h3.textContent = cartItem.productVariation.product.name + " - " + cartItem.productVariation.color;
+        h3.textContent = cartItem.productVariation.product.name + " - " + cartItem.productVariation.color + " - " + cartItem.size;
 
         const p = document.createElement("p");
         p.textContent = "R$ " + cartItem.productVariation.product.price.toFixed(2);
