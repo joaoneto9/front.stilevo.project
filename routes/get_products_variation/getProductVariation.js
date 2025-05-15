@@ -3,7 +3,7 @@ import { getToken } from "../../pages/user_config/user.js";
 export function getProductVariation(id) {
     return axios.get("http://localhost:8080/api/products/variation/GET/" + id, {
         headers: {
-            'Authorization': 'Bearer ' + getToken()
+            Authorization: 'Bearer ' + getToken()
         }
     })
     .then(response => {
