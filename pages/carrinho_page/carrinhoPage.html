@@ -17,6 +17,19 @@
                 <li><a href="#">Contato</a></li>
             </ul>
         </nav>
+
+        <div class="perfil-icone" onclick="abrirMenuPerfil()">
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div id="menu-perfil-lateral" class="menu-perfil-lateral">
+            <ul>
+                <li><a href="#">Atualizar Dados</a></li>
+                <li><a href="../carrinho_page/carrinhoPage.html">Visualizar Carrinho</a></li>
+                <li><a id="Sair" href="#">Sair</a></li>
+            </ul>
+        </div>
+    
     </header>
 
     <section class="banner">
@@ -33,6 +46,7 @@
         <p>&copy; 2025 STILEVO STORE. Todos os direitos reservados.</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="../function_page/iniciarMenuPerfil.js"></script>
     <script type="module" src="carrinhoScript.js"></script>
 </body>
 </html>

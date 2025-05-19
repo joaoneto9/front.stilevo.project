@@ -13,15 +13,15 @@ registerForm.addEventListener("submit", async (event) => {
         return;
     }
 
-    const username = document.getElementById("username").value;
+    const name = document.getElementById("username").value;
     const email = document.getElementById("email").value; 
 
     try {
-        const user = await registerUser(username, email, password, "USER")
+        const user = await registerUser(name, email, password, "USER")
 
         const newUser = {
             id: user.id,
-            username: user.username,
+            username: user.name,
             email: user.email,
         };
 

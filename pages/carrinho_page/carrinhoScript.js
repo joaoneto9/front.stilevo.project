@@ -25,7 +25,7 @@ function showProducts(cartItens) {
         div.classList.add("produto");
 
         const a = document.createElement("a");
-        a.setAttribute('href', "../product_page/productPage.html?id=" + cartItem.productVariation.id); 
+        a.setAttribute('href', "../product_page/productPage.html?id=" + cartItem.productVariation.id);
 
         // Clicando no card inteiro, navega para a página do produto
         div.addEventListener('click', () => {
@@ -85,5 +85,4 @@ function showProducts(cartItens) {
 
         produtos.appendChild(div);
     });
-
 }
