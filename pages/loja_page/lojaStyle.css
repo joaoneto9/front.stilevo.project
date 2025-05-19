@@ -60,6 +60,8 @@ nav a:hover {
 /* Transição suave */
 .menu-perfil-lateral {
     position: fixed;
+    display: flex;
+    flex-direction: column;
     top: 0;
     right: -300px; /* começa escondido fora da tela */
     width: 300px;
@@ -87,6 +89,14 @@ nav a:hover {
     font-weight: bold;
 }
 
+.menu-perfil-lateral #dados-usuario {
+    margin-top: auto; /* empurra para baixo */
+    padding: 10px;
+    text-align: center;
+    color: #000;
+    border-top: 1px solid #ccc;
+}
+
 /* Quando ativo */
 .menu-perfil-lateral.ativo {
     right: 0;
@@ -97,6 +107,8 @@ body.menu-aberto {
     margin-right: 300px; /* mesma largura do menu */
     transition: margin 0.3s ease;
 }
+
+
 
 
 .banner {

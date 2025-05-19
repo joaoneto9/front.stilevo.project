@@ -60,6 +60,8 @@ nav a {
 /* Transição suave */
 .menu-perfil-lateral {
     position: fixed;
+    display: flex;
+    flex-direction: column;
     top: 0;
     right: -300px; /* começa escondido fora da tela */
     width: 300px;
@@ -90,6 +92,14 @@ nav a {
 /* Quando ativo */
 .menu-perfil-lateral.ativo {
     right: 0;
+}
+
+.menu-perfil-lateral #dados-usuario {
+    margin-top: auto; /* empurra para baixo */
+    padding: 10px;
+    text-align: center;
+    color: #000;
+    border-top: 1px solid #ccc;
 }
 
 /* Empurrar a página */
