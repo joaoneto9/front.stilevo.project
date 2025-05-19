@@ -13,7 +13,7 @@ function showProducts(products) {
         div.classList.add("produto");
 
         const a = document.createElement("a");
-        a.setAttribute('href', "../product_page/productPage.html?id=" + variation.id); 
+        a.setAttribute('href', "../product_page/productPage.html?id=" + variation.id);
 
         div.addEventListener('click', () => {
             a.click();

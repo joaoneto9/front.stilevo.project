@@ -14,8 +14,8 @@ export function getUserId() {
     return getUser()?.id;
 }
 
-export function getUserUsername() {
-    return getUser()?.username;
+export function getUserName() {
+    return getUser()?.name;
 }
 
 export function getUserEmail() {

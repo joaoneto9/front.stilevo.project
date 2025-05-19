@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <title>STILEVO CLUB</title>
@@ -7,6 +8,7 @@
     <!-- Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <header>
         <h1>STILEVO CLUB</h1>
@@ -17,6 +19,19 @@
                 <li><a href="#">Contato</a></li>
             </ul>
         </nav>
+
+        <div class="perfil-icone" onclick="abrirMenuPerfil()">
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div id="menu-perfil-lateral" class="menu-perfil-lateral">
+            <ul>
+                <li><a href="#">Atualizar Dados</a></li>
+                <li><a href="../carrinho_page/carrinhoPage.html">Visualizar Carrinho</a></li>
+                <li><a id="Sair" href="#">Sair</a></li>
+            </ul>
+        </div>
+
     </header>
 
     <section class="banner">
@@ -27,14 +42,17 @@
 
     <section class="destaques"">
         <h2>Destaques</h2>
-        <div class="produtos">
+        <div class=" produtos">
         </div>
     </section>
 
     <footer>
         <p>&copy; 2025 STILEVO STORE. Todos os direitos reservados.</p>
     </footer>
+
+    <script type="module" src="../function_page/iniciarMenuPerfil.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script type="module" src="lojaScript.js"></script>
 </body>
+
 </html>
