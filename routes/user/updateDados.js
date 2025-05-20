@@ -1,15 +1,19 @@
-import { getUserId } from "../../pages/user_config/user";
+import { getUserId, getToken } from "../../pages/user_config/user.js";
 
-export function updateDadosRequest(updateUser) {
-    axios.put("http://localhost:8080/api/users/UPDATE" + getUserId(), 
+export function updateParcialDataUser(updateUser) {
+    return axios.patch("http://localhost:8080/api/users/PATCH/" + getUserId(), 
     {
         name: updateUser.name,
         email: updateUser.email,
         password: updateUser.password,
         endereco: updateUser.endereco
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + getToken()
+        }
     })
     .then(response => {
-        return response.data 
+        return response.data;
         // retorna o user atualizado, dar um sessionStorage depois...
         // isso garante que o usuario foi atualizado no DB
     })

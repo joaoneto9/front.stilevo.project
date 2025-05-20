@@ -15,6 +15,9 @@ export function abrirMenuPerfil() {
     menu.classList.add("ativo");
     body.classList.add("menu-aberto");
 
+    if (getUserName() == undefined || getUserEmail() == undefined) 
+        return;
+
     const dados = document.getElementById("dados-usuario");
     dados.innerHTML = `
         <p>Name: ${getUserName()}</p>
