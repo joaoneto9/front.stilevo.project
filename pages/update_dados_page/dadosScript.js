@@ -1,6 +1,6 @@
 import { updateParcialDataUser } from "../../routes/user/updateDados.js";
 import { viaCepRequest } from "../function_page/viaCepRequest.js";
-import { getUserEmail, getUserEndereco, getUserName, setUser } from "../user_config/user.js";
+import { getUserEmail, getUserEndereco, getUserName, setToken, setUser } from "../user_config/user.js";
 
 const inputCep = document.getElementById("cep");
 const atributosEndereco = document.getElementById("atributosEndereco");
@@ -72,12 +72,11 @@ form.addEventListener('submit', async (event) => {
     const name = document.getElementById("name").value.trim() || null;
     const email = document.getElementById("email").value.trim() || null;
     const password = document.getElementById("password").value.trim() || null;
-    const passwordCheck = document.getElementById("passwordCheck").value.trim() || null;
 
-    if (password !== passwordCheck) {
+    if (password === null) {
         Swal.fire({
             icon: 'error',
-            title: 'senha nao confirmada',
+            title: 'senha da conta e necessaria para atualizar os dados',
             text: 'Verifique os dados e tente novamente.'
         });
         return;
@@ -98,17 +97,27 @@ form.addEventListener('submit', async (event) => {
         endereco: enderecoToUpdate
     }
 
-    const newUserConfig = await updateParcialDataUser(updateUser);
-    setUser(newUserConfig);
+    try {
+        const data = await updateParcialDataUser(updateUser);
+        console.log(data);
+        setUser(data.user); //reloga para atualizar os dados corretamente
+        setToken(data.token); // manda um novo token
 
-    Swal.fire({
-        icon: 'success',
-        title: 'Dados Atualizados!',
-        text: 'Usuário atualizado com sucesso.',
-        timer: 2000,
-        showConfirmButton: false
-    });
-
+        Swal.fire({
+            icon: 'success',
+            title: 'Dados Atualizados!',
+            text: 'Usuário atualizado com sucesso.',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'senha incorreta, tente novamente',
+            text: 'Verifique os dados e tente novamente.'
+        });
+        return;
+    }
 });
 
 function showEndereco(endereco) {
