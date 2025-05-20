@@ -9,7 +9,11 @@ registerForm.addEventListener("submit", async (event) => {
     const confirmPassword = document.getElementById("confirmPassword").value;
 
     if (password !== confirmPassword) {
-        alert("senha nao foi confirmada, corrija");
+        Swal.fire({
+            icon: 'error',            
+            title: 'senha nao confirmada',
+            text: 'Verifique os dados e tente novamente.'
+        });
         return;
     }
 

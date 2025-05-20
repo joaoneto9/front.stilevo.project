@@ -1,10 +1,6 @@
 export function setUser(user) {
-    updateUser(user);
-} 
-
-export function updateUser(user) {
     sessionStorage.setItem("user", JSON.stringify(user));
-}
+} 
 
 function getUser() {
     return JSON.parse(sessionStorage.getItem("user"));
