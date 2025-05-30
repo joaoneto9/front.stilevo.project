@@ -1,5 +1,5 @@
 export function login(email, password) {
-    return axios.post('http://localhost:8080/api/users/POST/login', {
+    return axios.post('http://localhost:8080/api/auth/login', {
         email,
         password
     })

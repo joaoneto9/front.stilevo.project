@@ -1,10 +1,9 @@
 import { getToken, getUserId } from "../../pages/user_config/user.js"
 
 export function insertProductAtCart(productVariationId, size) {
-    return axios.put("http://localhost:8080/api/cart/PUT/product", {
-        clientId: getUserId(),
+    return axios.post("http://localhost:8080/api/carts/" + getUserId() + "/product", {
         productVariationId,
-        size,
+        size
     }, {
         headers: {
             Authorization: 'Bearer ' + getToken()

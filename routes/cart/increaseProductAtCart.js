@@ -1,7 +1,7 @@
 import { getUserId, getToken } from "../../pages/user_config/user.js";
 
 export function increaseQuantity(indice) {
-    return axios.put("http://localhost:8080/api/cart/INCREASE/" + getUserId() + "/product/" + indice, 
+    return axios.patch("http://localhost:8080/api/carts/" + getUserId() + "/product/" + indice + "/increase", 
     {}, //body vazio
     {
         headers: {

@@ -54,7 +54,7 @@ function showProducts(cartItens) {
         btnDiminuir.textContent = "–";
         btnDiminuir.addEventListener('click', async (e) => {
             e.stopPropagation(); // Impede que o clique vá para o <div> e acione o <a>
-            const updateCartItem = await decreseQuantity(indice + 1);
+            const updateCartItem = await decreseQuantity(cartItens.length - (indice + 1)); // pega o ultimo indice
 
             if (updateCartItem.quantity == 0) {
                 location.reload();
@@ -67,7 +67,7 @@ function showProducts(cartItens) {
         btnAumentar.textContent = "+";
         btnAumentar.addEventListener('click', async (e) => {
             e.stopPropagation();
-            const updateCartItem = await increaseQuantity(indice + 1);
+            const updateCartItem = await increaseQuantity(cartItens.length - (indice + 1));
             quantidadeSpan.textContent = updateCartItem.quantity;
             // Aqui também você pode atualizar o back-end
         });
