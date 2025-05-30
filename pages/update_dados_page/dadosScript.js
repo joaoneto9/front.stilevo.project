@@ -70,7 +70,6 @@ form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim() || null;
-    const email = document.getElementById("email").value.trim() || null;
     const password = document.getElementById("password").value.trim() || null;
 
     if (password === null) {
@@ -92,16 +91,14 @@ form.addEventListener('submit', async (event) => {
 
     const updateUser = {
         name: name,
-        email: email,
         password: password,
         endereco: enderecoToUpdate
     }
 
     try {
-        const data = await updateParcialDataUser(updateUser);
-        console.log(data);
-        setUser(data.user); //reloga para atualizar os dados corretamente
-        setToken(data.token); // manda um novo token
+        const user = await updateParcialDataUser(updateUser);
+        setUser(user); //reloga para atualizar os dados corretamente
+        
 
         Swal.fire({
             icon: 'success',
@@ -110,6 +107,7 @@ form.addEventListener('submit', async (event) => {
             timer: 2000,
             showConfirmButton: false
         });
+
     } catch (error) {
         Swal.fire({
             icon: 'error',
@@ -173,13 +171,11 @@ function showEndereco(endereco) {
     
 window.addEventListener('DOMContentLoaded', () => {
         const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
 
-        if (getUserEmail() == undefined && getUserEmail() == undefined) {
+        if (getUserEmail() == undefined) {
             return;
         }
 
-        emailInput.value = getUserEmail();
         nameInput.value = getUserName()
 
         if (getUserEndereco() == undefined) {

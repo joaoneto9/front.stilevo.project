@@ -1,10 +1,9 @@
 import { getUserId, getToken } from "../../pages/user_config/user.js";
 
 export function updateParcialDataUser(updateUser) {
-    return axios.patch("http://localhost:8080/api/users/PATCH/" + getUserId(), 
+    return axios.patch("http://localhost:8080/api/users/" + getUserId(), 
     {
         name: updateUser.name,
-        email: updateUser.email,
         password: updateUser.password,
         endereco: updateUser.endereco
     }, {

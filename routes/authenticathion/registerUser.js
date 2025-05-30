@@ -1,5 +1,5 @@
 export function registerUser(name, email, password, role) {
-    return axios.post('http://localhost:8080/api/users/POST/register', {
+    return axios.post('http://localhost:8080/api/users/', {
         name: name,
         email: email,
         password: password,

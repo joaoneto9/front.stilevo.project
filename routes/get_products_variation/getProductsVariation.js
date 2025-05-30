@@ -1,7 +1,7 @@
 import { getToken } from "../../pages/user_config/user.js";
 
 export function getProducts() {
-    return axios.get("http://localhost:8080/api/products/variation/GET/all", {
+    return axios.get("http://localhost:8080/api/products/variation/", {
         headers: {
             Authorization: 'Bearer ' + getToken()
         }
