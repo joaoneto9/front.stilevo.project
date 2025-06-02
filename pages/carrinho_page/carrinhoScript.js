@@ -1,6 +1,7 @@
 import { getCart } from "../../routes/cart/getCartUser.js";
 import { decreseQuantity } from "../../routes/cart/decreaseProductAtCart.js";
 import { increaseQuantity } from "../../routes/cart/increaseProductAtCart.js";
+import { postCartItemToOrder } from "../../routes/order/postCartItemAtOrder.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
     showProducts(await getCart());
@@ -20,7 +21,7 @@ function showProducts(cartItens) {
         return;
     }
 
-    cartItens.forEach((cartItem, indice) => {
+    cartItens.forEach(cartItem => {
         const div = document.createElement("div");
         div.classList.add("produto");
 
@@ -51,10 +52,11 @@ function showProducts(cartItens) {
         quantidadeSpan.style.margin = "0 10px";
 
         const btnDiminuir = document.createElement("button");
+
         btnDiminuir.textContent = "–";
         btnDiminuir.addEventListener('click', async (e) => {
             e.stopPropagation(); // Impede que o clique vá para o <div> e acione o <a>
-            const updateCartItem = await decreseQuantity(cartItens.length - (indice + 1)); // pega o ultimo indice
+            const updateCartItem = await decreseQuantity(cartItem.id); 
 
             if (updateCartItem.quantity == 0) {
                 location.reload();
@@ -64,14 +66,47 @@ function showProducts(cartItens) {
         });
 
         const btnAumentar = document.createElement("button");
+
         btnAumentar.textContent = "+";
         btnAumentar.addEventListener('click', async (e) => {
             e.stopPropagation();
-            const updateCartItem = await increaseQuantity(cartItens.length - (indice + 1));
+            const updateCartItem = await increaseQuantity(cartItem.id);
             quantidadeSpan.textContent = updateCartItem.quantity;
             // Aqui também você pode atualizar o back-end
         });
 
+        const divAddToOrder = document.createElement("div");
+        const btnAddToOrder = document.createElement("button");
+
+        btnAddToOrder.addEventListener('click', async (e) => {
+            e.stopPropagation();
+
+            try {
+                const addItemResponse = await postCartItemToOrder(orderId, cartItem.id);
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'item adicionado ao pedido',
+                    text: 'Acesse o seu pedido e veja o Produto.',
+                });
+
+            } catch(error) {
+
+                Swal.fire({
+                    icon: 'error',            
+                    title: 'erro ao adicioanar o item ao pedido.',
+                    text: 'tente novamente.',
+                    timer: 1000,
+                    showConfirmButton: false
+                });
+
+            }
+        })
+
+        btnAddToOrder.innerText = "ADICIONAR AO PEDIDO";
+
+        divAddToOrder.appendChild(btnAddToOrder);
+        
         quantidadeDiv.appendChild(btnDiminuir);
         quantidadeDiv.appendChild(quantidadeSpan);
         quantidadeDiv.appendChild(btnAumentar);
@@ -82,6 +117,7 @@ function showProducts(cartItens) {
         div.appendChild(p);
         div.appendChild(quantidadeDiv);
         div.appendChild(a); // opcional, pois o clique já redireciona
+        div.appendChild(divAddToOrder);
 
         produtos.appendChild(div);
     });
