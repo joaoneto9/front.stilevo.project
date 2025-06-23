@@ -1,4 +1,7 @@
+import { login } from "../../routes/authenticathion/loginUser.js";
 import { registerUser } from "../../routes/authenticathion/registerUser.js";
+import { sendEmail } from "../../routes/email/sendEmail.js";
+import { getToken, setToken, setUser } from "../user_config/user.js";
 
 const registerForm = document.getElementById("registerForm");
 
@@ -21,15 +24,19 @@ registerForm.addEventListener("submit", async (event) => {
     const email = document.getElementById("email").value; 
 
     try {
-        const user = await registerUser(name, email, password, "USER")
+        await registerUser(name, email, password, "USER"); // registra o usuario
 
-        const newUser = {
-            id: user.id,
-            username: user.name,
-            email: user.email,
-        };
+        const user = await login(email, password);
 
-        console.log("USUARIO CADASTRADO COM SUCESSO: ", newUser); // usuario registardo; 
+        setUser(user.user);
+        setToken(user.token)
+
+        await sendEmail("Bem-vindo à nossa loja! - STILEVO CLUB", 
+            "<h2 style='color:#4CAF50;'>Bem-vindo à Stilevo Store!" + 
+            "</h2><p>Olá, seu cadastro foi concluído com sucesso." + 
+            "</p><p>Aproveite nossas ofertas exclusivas e confira nossa loja:</p>" + 
+            "<a href='https://stilevo-store.com' style='display:inline-block; padding:10px 20px; background-color:#4CAF50; color:#fff; text-decoration:none; border-radius:5px;'>Visitar Loja</a>"+
+            "<p style='font-size:12px; color:#777; margin-top:20px;'>Se você não solicitou este cadastro, apenas ignore este e-mail.</p>");
 
         Swal.fire({
             icon: 'success',
@@ -40,7 +47,7 @@ registerForm.addEventListener("submit", async (event) => {
         });
 
         setTimeout(() => {
-            window.location.href = "../login_page/loginPage.html";
+            window.location.href = "../loja_page/lojaPage.html";
         }, 2000) // 2 segundos de espera
 
     } catch (error) {
