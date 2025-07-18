@@ -31,13 +31,6 @@ registerForm.addEventListener("submit", async (event) => {
         setUser(user.user);
         setToken(user.token)
 
-        await sendEmail("Bem-vindo à nossa loja! - STILEVO CLUB", 
-            "<h2 style='color:#4CAF50;'>Bem-vindo à Stilevo Store!" + 
-            "</h2><p>Olá, seu cadastro foi concluído com sucesso." + 
-            "</p><p>Aproveite nossas ofertas exclusivas e confira nossa loja:</p>" + 
-            "<a href='https://stilevo-store.com' style='display:inline-block; padding:10px 20px; background-color:#4CAF50; color:#fff; text-decoration:none; border-radius:5px;'>Visitar Loja</a>"+
-            "<p style='font-size:12px; color:#777; margin-top:20px;'>Se você não solicitou este cadastro, apenas ignore este e-mail.</p>");
-
         Swal.fire({
             icon: 'success',
             title: 'Registro concluído!',
@@ -49,6 +42,13 @@ registerForm.addEventListener("submit", async (event) => {
         setTimeout(() => {
             window.location.href = "../loja_page/lojaPage.html";
         }, 2000) // 2 segundos de espera
+
+         await sendEmail("Bem-vindo à nossa loja! - STILEVO CLUB", 
+            "<h2 style='color:#4CAF50;'>Bem-vindo à Stilevo Store!" + 
+            "</h2><p>Olá, seu cadastro foi concluído com sucesso." + 
+            "</p><p>Aproveite nossas ofertas exclusivas e confira nossa loja:</p>" + 
+            "<a href='https://stilevo-store.com' style='display:inline-block; padding:10px 20px; background-color:#4CAF50; color:#fff; text-decoration:none; border-radius:5px;'>Visitar Loja</a>"+
+            "<p style='font-size:12px; color:#777; margin-top:20px;'>Se você não solicitou este cadastro, apenas ignore este e-mail.</p>");
 
     } catch (error) {
         console.log("error", error);
